@@ -26,9 +26,9 @@ namespace Double_linkedlist
         {
             int nim;
             string nm;
-            Console.WriteLine("\nEnter the roll number of the student: ");
+            Console.WriteLine("\nEnter the roll number of the student:  ");
             nim = Convert.ToInt32(Console.ReadLine());
-            Console.Write("\nEnter the name of the student: ");
+            Console.Write("\nEnter the name of the student:  ");
             nm = Console.ReadLine();
             Node newNode = new Node();
             newNode.noMhs = nim;
@@ -130,10 +130,10 @@ namespace Double_linkedlist
                 Console.WriteLine("\nList is Empty");
             else
             {
-                Console.WriteLine("\n Record in the asceding order of" + "Roll numeber are:\n");
+                Console.WriteLine("\n Record in the asceding order of " + "Roll numeber are:\n ");
                 Node currentNode;
                 for (currentNode = START; currentNode != null; currentNode = currentNode.next)
-                    Console.Write(currentNode.noMhs + currentNode.name + "\n");
+                    Console.Write(currentNode.noMhs + currentNode.name + "\n ");
             }
         }
         public void descending()
@@ -142,7 +142,7 @@ namespace Double_linkedlist
                 Console.WriteLine("\nList is empty");
             else
             {
-                Console.WriteLine("\nRecord in the Descending order of" + "Roll Number are: \n");
+                Console.WriteLine("\nRecord in the Descending order of " + "Roll Number are: \n ");
                 Node currentNode;
                 //membawa currentNode ke node paling belakang
                 currentNode = START;
@@ -154,7 +154,7 @@ namespace Double_linkedlist
                 //membaca data dari last node ke first node
                 while (currentNode != null)
                 {
-                    Console.Write(currentNode.noMhs + "  " + currentNode.name + "\n");
+                    Console.Write(currentNode.noMhs + "    " + currentNode.name + "\n ");
                     currentNode = currentNode.prev;
                 }
             }
@@ -192,6 +192,100 @@ namespace Double_linkedlist
                     currentNode = currentNode.prev;
                 }
 
+            }
+        }
+
+    }
+    class program
+    {
+        static void Main (string[] args)
+        {
+            DoubleLinkedList obj = new DoubleLinkedList();
+            while (true)
+            {
+                try
+                {
+                    Console.WriteLine("\nMenu");
+                    Console.WriteLine("1. Add Record to the list");
+                    Console.WriteLine("2. Delete a record from the list");
+                    Console.WriteLine("3. View all recordds in the asceding order of roll number");
+                    Console.WriteLine("4. View all record in the descending order of roll numbers");
+                    Console.WriteLine("5. search for a record in the list");
+                    Console.WriteLine("6. Exit\n");
+                    Console.WriteLine("Enter your Choice (1-6: )");
+                    char ch = Convert.ToChar(Console.ReadLine());   
+                    switch (ch)
+                    {
+                        case '1':
+                            {
+                                obj.addNote();
+                            }
+                            break;
+                        case '2':
+                            {
+                                if (obj.listEmpty())
+                                {
+                                    Console.WriteLine("\nList is empty");
+                                    break;
+                                }
+                                Console.Write("Enter the roll number of the student" + "whose record is to be deleted: ");
+                                int rollNo = Convert.ToInt32(Console.ReadLine());
+                                Console.WriteLine();
+                                if (obj.dellNode(rollNo) == false)
+                                    Console.WriteLine("Record not found");
+                                else
+                                    Console.WriteLine("Record with roll number" + rollNo + "deleted\n");
+
+                            }
+                            break ;
+                        case '3':
+                            {
+                                obj.ascending();    
+
+                            }
+                            break;
+                        case '4':
+                            {
+                                obj.descending();
+                            }
+                            break;
+                        case '5':
+                            {
+                                if (obj.listEmpty() == true)
+                                {
+                                    Console.WriteLine("\nList is empty");
+                                    break;
+
+                                }
+                                Node prev, curr;
+                                prev = curr = null;
+                                Console.Write("\n enter the roll number of the student whose record you want to search: ");
+                                int num = Convert.ToInt32(Console.ReadLine());
+                                if (obj.Search(num, ref prev,ref curr) == false)
+                                {
+                                    Console.WriteLine("\nRecord not found");
+                                }
+                                else 
+                                {
+                                    Console.WriteLine("\nRecord not found");
+                                    Console.WriteLine("\nRoll number: " + curr.noMhs);
+                                    Console.WriteLine("\nName: " + curr.name);
+                                }
+                            }
+                            break;
+                        case '6':
+                            return;
+                        default:
+                            {
+                                Console.WriteLine("check for the values entered.");
+                            }
+                            break;
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Check for the vaalues entered.");
+                }
             }
         }
     }
