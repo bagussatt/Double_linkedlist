@@ -150,6 +150,13 @@ namespace Double_linkedlist
                 {
                     Console.Write(currentNode.next);
                 }
+
+                //membaca data dari last node ke first node
+                while (currentNode != null)
+                {
+                    Console.Write(currentNode.noMhs + "  " + currentNode.name + "\n");
+                    currentNode = currentNode.prev;
+                }
             }
         }
     }
